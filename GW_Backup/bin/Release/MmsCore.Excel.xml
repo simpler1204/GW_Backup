@@ -1,0 +1,625 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>MmsCore.Excel</name>
+    </assembly>
+    <members>
+        <member name="T:MmsCore.Excel.EnumerableExtensions">
+            <summary>
+            <see cref="T:System.Collections.Generic.IEnumerable`1" /> インターフェイスの拡張メソッドを提供します。
+            </summary>
+        </member>
+        <member name="M:MmsCore.Excel.EnumerableExtensions.ToRowsDataArray``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Int32,System.Object}[])">
+            <summary>
+            行データの配列へ変換します。
+            </summary>
+            <typeparam name="T">コレクションの要素の型。</typeparam>
+            <param name="rowItems">コレクション。</param>
+            <param name="columnObjectSelectors">コレクションの要素から <see cref="T:System.Object" /> を取得するメソッドのデリゲート。</param>
+            <returns>行データの配列。</returns>
+        </member>
+        <member name="T:MmsCore.Excel.ExcelAccessorFactory">
+            <summary>
+            <see cref="T:MmsCore.Excel.IExcelReader" /> と <see cref="T:MmsCore.Excel.IExcelWriter" /> の生成を提供します。
+            </summary>
+        </member>
+        <member name="M:MmsCore.Excel.ExcelAccessorFactory.CreateReader(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:MmsCore.Excel.ExcelAccessorFactory.CreateWriter(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="T:MmsCore.Excel.ExcelReader">
+            <summary>
+            Excel 読込を提供します。
+            </summary>
+        </member>
+        <member name="F:MmsCore.Excel.ExcelReader._stream">
+            <summary>読み込む Excel のファイルストリームを表します。</summary>
+        </member>
+        <member name="F:MmsCore.Excel.ExcelReader._workbook">
+            <summary>読み込む Excel のワークブックを表します。</summary>
+        </member>
+        <member name="F:MmsCore.Excel.ExcelReader._disposableState">
+            <summary>Dispose メソッドが呼び出されたかをスレッドセーフで管理する値を表します。</summary>
+        </member>
+        <member name="M:MmsCore.Excel.ExcelReader.#ctor(System.String)">
+            <summary>
+            <see cref="T:MmsCore.Excel.ExcelReader" /> クラスの新しいインスタンスを初期化します。
+            </summary>
+            <param name="filePathToOpen">読み込む Excel のファイルパス。</param>
+        </member>
+        <member name="M:MmsCore.Excel.ExcelReader.Finalize">
+            <summary>
+            <see cref="T:MmsCore.Excel.ExcelReader" /> クラスのインスタンスが GC に回収される時に呼び出されます。
+            </summary>
+        </member>
+        <member name="P:MmsCore.Excel.ExcelReader.XlWorkbook">
+            <inheritdoc />
+        </member>
+        <member name="P:MmsCore.Excel.ExcelReader.Item(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:MmsCore.Excel.ExcelReader.GetWorksheetReaderOrNull(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:MmsCore.Excel.ExcelReader.GetWorksheetReaderOrNull(System.Int32)">
+            <inheritdoc />
+        </member>
+        <member name="M:MmsCore.Excel.ExcelReader.GetWorksheetNames">
+            <inheritdoc />
+        </member>
+        <member name="M:MmsCore.Excel.ExcelReader.Dispose">
+            <inheritdoc />
+        </member>
+        <member name="M:MmsCore.Excel.ExcelReader.OpenAsReadonly(System.String)">
+            <summary>
+            指定されたファイルパスのファイルを読み取り専用で開きます。
+            </summary>
+            <param name="filePathToOpen">読み取り専用で開くファイルのパス。</param>
+            <returns>読み取り専用のストリーム。</returns>
+        </member>
+        <member name="M:MmsCore.Excel.ExcelReader.Dispose(System.Boolean)">
+            <summary>
+            <see cref="T:MmsCore.Excel.ExcelReader" /> クラスのインスタンスによって使用されているアンマネージ リソースを解放し、オプションでマネージ リソースも解放します。
+            </summary>
+            <param name="disposing">マネージ リソースとアンマネージ リソースの両方を解放する場合は true。アンマネージ リソースだけを解放する場合は false。</param>
+        </member>
+        <member name="T:MmsCore.Excel.ExcelWorksheetReader">
+            <summary>
+            Excel シートを読み取るためのクラスを表します。
+            </summary>
+        </member>
+        <member name="F:MmsCore.Excel.ExcelWorksheetReader._worksheet">
+            <summary><see cref="T:ClosedXML.Excel.IXLWorksheet" />を表します。</summary>
+        </member>
+        <member name="M:MmsCore.Excel.ExcelWorksheetReader.#ctor(ClosedXML.Excel.IXLWorksheet)">
+            <summary>
+            <see cref="T:MmsCore.Excel.ExcelWorksheetReader" /> クラスの新しいインスタンスを初期化します。
+            </summary>
+            <param name="worksheet"><see cref="T:ClosedXML.Excel.IXLWorksheet" />。</param>
+        </member>
+        <member name="P:MmsCore.Excel.ExcelWorksheetReader.XlWorksheet">
+            <inheritdoc />
+        </member>
+        <member name="P:MmsCore.Excel.ExcelWorksheetReader.SheetName">
+            <inheritdoc />
+        </member>
+        <member name="M:MmsCore.Excel.ExcelWorksheetReader.GetBackgroundColor(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:MmsCore.Excel.ExcelWorksheetReader.GetBackgroundColor(System.String,System.Int32,System.Int32)">
+            <inheritdoc />
+        </member>
+        <member name="M:MmsCore.Excel.ExcelWorksheetReader.GetValueOrNull``1(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:MmsCore.Excel.ExcelWorksheetReader.GetFormattedStringOrNull(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:MmsCore.Excel.ExcelWorksheetReader.GetStringOrNull(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:MmsCore.Excel.ExcelWorksheetReader.GetValueOrNull``1(System.String,System.Int32,System.Int32)">
+            <inheritdoc />
+        </member>
+        <member name="M:MmsCore.Excel.ExcelWorksheetReader.GetFormattedStringOrNull(System.String,System.Int32,System.Int32)">
+            <inheritdoc />
+        </member>
+        <member name="M:MmsCore.Excel.ExcelWorksheetReader.GetStringOrNull(System.String,System.Int32,System.Int32)">
+            <inheritdoc />
+        </member>
+        <member name="M:MmsCore.Excel.ExcelWorksheetReader.ThrowIfInvalidCellAddress(System.String)">
+            <summary>
+            セルアドレスが不適切な場合に例外を発生させます。
+            </summary>
+            <param name="cellAddress">セルアドレス。</param>
+        </member>
+        <member name="M:MmsCore.Excel.ExcelWorksheetReader.ResolveCellAddress(System.String,System.Int32,System.Int32)">
+            <summary>
+            セルアドレスを求めます。
+            </summary>
+            <param name="baseCellAddress">基準となるセルアドレス。</param>
+            <param name="rowOffset">行のオフセット。(0～)</param>
+            <param name="columnOffset">列のオフセット。(0～)</param>
+            <returns>セルアドレス。</returns>
+        </member>
+        <member name="T:MmsCore.Excel.ExcelWorksheetWriter">
+            <summary>
+            Excel シートへ書き込むためのクラスを表します。
+            </summary>
+        </member>
+        <member name="F:MmsCore.Excel.ExcelWorksheetWriter._worksheet">
+            <summary><see cref="T:ClosedXML.Excel.IXLWorksheet" />を表します。</summary>
+        </member>
+        <member name="M:MmsCore.Excel.ExcelWorksheetWriter.#ctor(ClosedXML.Excel.IXLWorksheet)">
+            <summary>
+            <see cref="T:MmsCore.Excel.ExcelWorksheetWriter" /> クラスの新しいインスタンスを初期化します。
+            </summary>
+            <param name="worksheet"><see cref="T:ClosedXML.Excel.IXLWorksheet" />。</param>
+        </member>
+        <member name="P:MmsCore.Excel.ExcelWorksheetWriter.XlWorksheet">
+            <inheritdoc />
+        </member>
+        <member name="P:MmsCore.Excel.ExcelWorksheetWriter.SheetName">
+            <inheritdoc />
+        </member>
+        <member name="M:MmsCore.Excel.ExcelWorksheetWriter.ClearRanges(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:MmsCore.Excel.ExcelWorksheetWriter.SetCellBackgroundColor(System.String,ClosedXML.Excel.XLColor)">
+            <inheritdoc />
+        </member>
+        <member name="M:MmsCore.Excel.ExcelWorksheetWriter.SetCellBackgroundColor(System.String,System.Int32,System.Int32,ClosedXML.Excel.XLColor)">
+            <inheritdoc />
+        </member>
+        <member name="M:MmsCore.Excel.ExcelWorksheetWriter.SetCellValue(System.String,System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:MmsCore.Excel.ExcelWorksheetWriter.SetCellValue``1(System.String,``0)">
+            <inheritdoc />
+        </member>
+        <member name="M:MmsCore.Excel.ExcelWorksheetWriter.SetCellValue``1(System.String,System.Nullable{``0})">
+            <inheritdoc />
+        </member>
+        <member name="M:MmsCore.Excel.ExcelWorksheetWriter.SetCellValue(System.String,System.Int32,System.Int32,System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:MmsCore.Excel.ExcelWorksheetWriter.SetCellValue``1(System.String,System.Int32,System.Int32,``0)">
+            <inheritdoc />
+        </member>
+        <member name="M:MmsCore.Excel.ExcelWorksheetWriter.SetCellValue``1(System.String,System.Int32,System.Int32,System.Nullable{``0})">
+            <inheritdoc />
+        </member>
+        <member name="M:MmsCore.Excel.ExcelWorksheetWriter.SetRowsDataArray``1(System.String,System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Int32,System.Object}[])">
+            <inheritdoc />
+        </member>
+        <member name="M:MmsCore.Excel.ExcelWorksheetWriter.SetRowsDataArray(System.String,System.Collections.Generic.IReadOnlyCollection{System.Object[]})">
+            <inheritdoc />
+        </member>
+        <member name="M:MmsCore.Excel.ExcelWorksheetWriter.CopyAndPasteRowsDataArray``1(System.String,System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Int32,System.Object}[])">
+            <inheritdoc />
+        </member>
+        <member name="M:MmsCore.Excel.ExcelWorksheetWriter.CopyAndPasteRowsDataArray(System.String,System.Collections.Generic.IReadOnlyCollection{System.Object[]})">
+            <inheritdoc />
+        </member>
+        <member name="M:MmsCore.Excel.ExcelWorksheetWriter.CreateOrResizeTable(System.String,System.String,System.Int32)">
+            <inheritdoc />
+        </member>
+        <member name="M:MmsCore.Excel.ExcelWorksheetWriter.ResolveCellAddress(System.String,System.Int32,System.Int32)">
+            <summary>
+            セルアドレスを求めます。
+            </summary>
+            <param name="baseCellAddress">基準となるセルアドレス。</param>
+            <param name="rowOffset">行のオフセット。(0～)</param>
+            <param name="columnOffset">列のオフセット。(0～)</param>
+            <returns>セルアドレス。</returns>
+        </member>
+        <member name="T:MmsCore.Excel.ExcelWriter">
+            <summary>
+            Excel 出力を提供します。
+            </summary>
+        </member>
+        <member name="F:MmsCore.Excel.ExcelWriter._workbook">
+            <summary>読み込む Excel のワークブックを表します。</summary>
+        </member>
+        <member name="F:MmsCore.Excel.ExcelWriter._disposableState">
+            <summary>Dispose メソッドが呼び出されたかをスレッドセーフで管理する値を表します。</summary>
+        </member>
+        <member name="M:MmsCore.Excel.ExcelWriter.#ctor(System.String)">
+            <summary>
+            <see cref="T:MmsCore.Excel.ExcelWriter" /> クラスの新しいインスタンスを初期化します。
+            </summary>
+            <param name="filePathToOpen">読み込む Excel のファイルパス。</param>
+        </member>
+        <member name="M:MmsCore.Excel.ExcelWriter.Finalize">
+            <summary>
+            <see cref="T:MmsCore.Excel.ExcelWriter" /> クラスのインスタンスが GC に回収される時に呼び出されます。
+            </summary>
+        </member>
+        <member name="P:MmsCore.Excel.ExcelWriter.XlWorkbook">
+            <inheritdoc />
+        </member>
+        <member name="P:MmsCore.Excel.ExcelWriter.Item(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:MmsCore.Excel.ExcelWriter.GetWorksheetWriterOrNull(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:MmsCore.Excel.ExcelWriter.GetWorksheetWriterOrNull(System.Int32)">
+            <inheritdoc />
+        </member>
+        <member name="M:MmsCore.Excel.ExcelWriter.GetWorksheetNames">
+            <inheritdoc />
+        </member>
+        <member name="M:MmsCore.Excel.ExcelWriter.Dispose">
+            <inheritdoc />
+        </member>
+        <member name="M:MmsCore.Excel.ExcelWriter.SaveTo(System.IO.Stream)">
+            <inheritdoc />
+        </member>
+        <member name="M:MmsCore.Excel.ExcelWriter.GetByteArrayToSave">
+            <inheritdoc />
+        </member>
+        <member name="M:MmsCore.Excel.ExcelWriter.Dispose(System.Boolean)">
+            <summary>
+            <see cref="T:MmsCore.Excel.ExcelWriter" /> クラスのインスタンスによって使用されているアンマネージ リソースを解放し、オプションでマネージ リソースも解放します。
+            </summary>
+            <param name="disposing">マネージ リソースとアンマネージ リソースの両方を解放する場合は true。アンマネージ リソースだけを解放する場合は false。</param>
+        </member>
+        <member name="T:MmsCore.Excel.IExcelAccessorFactory">
+            <summary>
+            <see cref="T:MmsCore.Excel.IExcelReader" /> と <see cref="T:MmsCore.Excel.IExcelWriter" /> の生成を提供するインターフェイスを表します。
+            </summary>
+        </member>
+        <member name="M:MmsCore.Excel.IExcelAccessorFactory.CreateReader(System.String)">
+            <summary>
+            <see cref="T:MmsCore.Excel.IExcelReader" /> を生成します。
+            </summary>
+            <param name="filePathToOpen">読み込む Excel のファイルパス。</param>
+            <returns><see cref="T:MmsCore.Excel.IExcelReader" />。</returns>
+        </member>
+        <member name="M:MmsCore.Excel.IExcelAccessorFactory.CreateWriter(System.String)">
+            <summary>
+            <see cref="T:MmsCore.Excel.IExcelWriter" /> を生成します。
+            </summary>
+            <param name="filePathToOpen">読み込む Excel のファイルパス。</param>
+            <returns><see cref="T:MmsCore.Excel.IExcelWriter" />。</returns>
+        </member>
+        <member name="T:MmsCore.Excel.IExcelReader">
+            <summary>
+            Excelファイルを読み取るためのインターフェースです。
+            </summary>
+        </member>
+        <member name="P:MmsCore.Excel.IExcelReader.XlWorkbook">
+            <summary>
+            読み取る Excelファイルの <see cref="T:ClosedXML.Excel.IXLWorkbook" />を取得します。
+            </summary>
+            <value>
+            値を表す <see cref="T:ClosedXML.Excel.IXLWorkbook" /> 型。
+            <para>読み取る Excelファイルの <see cref="T:ClosedXML.Excel.IXLWorkbook" />。</para>
+            </value>
+        </member>
+        <member name="P:MmsCore.Excel.IExcelReader.Item(System.String)">
+            <summary>
+            指定されたシート名に対応する <see cref="T:MmsCore.Excel.IExcelWorksheetReader" /> を取得します。
+            </summary>
+            <param name="worksheetNameToRead">読み込むシートの名前。</param>
+            <returns>指定された名前のシートが存在する場合はそのシートの<see cref="T:MmsCore.Excel.IExcelWorksheetReader" />。存在しない場合は null を返します。</returns>
+        </member>
+        <member name="M:MmsCore.Excel.IExcelReader.GetWorksheetReaderOrNull(System.String)">
+            <summary>
+            指定されたシート名に対応する <see cref="T:MmsCore.Excel.IExcelWorksheetReader" /> を取得します。
+            </summary>
+            <param name="worksheetNameToRead">読み込むシートの名前。</param>
+            <returns>指定された名前のシートが存在する場合はそのシートの<see cref="T:MmsCore.Excel.IExcelWorksheetReader" />。存在しない場合は null を返します。</returns>
+        </member>
+        <member name="M:MmsCore.Excel.IExcelReader.GetWorksheetReaderOrNull(System.Int32)">
+            <summary>
+            指定されたシート番号に対応する <see cref="T:MmsCore.Excel.IExcelWorksheetReader" /> を取得します。
+            </summary>
+            <param name="worksheetPositionToRead">読み込むシート番号 (1～)。</param>
+            <returns>指定されたシート番号にシートが存在する場合はそのシートの<see cref="T:MmsCore.Excel.IExcelWorksheetReader" />。存在しない場合は null を返します。</returns>
+        </member>
+        <member name="M:MmsCore.Excel.IExcelReader.GetWorksheetNames">
+            <summary>
+            シート名のコレクションを取得します。
+            </summary>
+            <returns>シート名のコレクション。</returns>
+        </member>
+        <member name="T:MmsCore.Excel.IExcelWorksheetReader">
+            <summary>
+            Excelシートを読み取るためのインターフェースです。
+            </summary>
+        </member>
+        <member name="P:MmsCore.Excel.IExcelWorksheetReader.XlWorksheet">
+            <summary>
+            <see cref="T:ClosedXML.Excel.IXLWorksheet" /> を取得します。
+            </summary>
+            <value>
+            値を表す <see cref="T:ClosedXML.Excel.IXLWorksheet" /> 型。
+            <para><see cref="T:ClosedXML.Excel.IXLWorksheet" />。</para>
+            </value>
+        </member>
+        <member name="P:MmsCore.Excel.IExcelWorksheetReader.SheetName">
+            <summary>
+            ワークシート名を取得します。
+            </summary>
+            <value>
+            値を表す <see cref="T:System.String" /> 型。
+            <para>ワークシート名。既定値は <see langword="null" /> です。</para>
+            </value>
+        </member>
+        <member name="M:MmsCore.Excel.IExcelWorksheetReader.GetBackgroundColor(System.String)">
+            <summary>
+            指定されたセルの背景色を取得します。
+            </summary>
+            <param name="cellAddress">セルの背景色を取得するセルのアドレス。</param>
+            <returns>セルの背景色。</returns>
+        </member>
+        <member name="M:MmsCore.Excel.IExcelWorksheetReader.GetBackgroundColor(System.String,System.Int32,System.Int32)">
+            <summary>
+            指定されたセルの背景色を取得します。
+            </summary>
+            <param name="baseCellAddress">基準となるセルアドレス。</param>
+            <param name="rowOffset">行のオフセット。(0～)</param>
+            <param name="columnOffset">列のオフセット。(0～)</param>
+            <returns>セルの背景色。</returns>
+        </member>
+        <member name="M:MmsCore.Excel.IExcelWorksheetReader.GetValueOrNull``1(System.String)">
+            <summary>
+            指定されたセルアドレスから値を取得します。値が存在しない場合はnullを返します。
+            </summary>
+            <typeparam name="T">取得する値の型。構造体である必要があります。</typeparam>
+            <param name="cellAddress">値を取得するセルのアドレス。</param>
+            <returns>指定されたセルアドレスの値。値が存在しない場合はnull。</returns>
+        </member>
+        <member name="M:MmsCore.Excel.IExcelWorksheetReader.GetFormattedStringOrNull(System.String)">
+            <summary>
+            指定されたセルアドレスからフォーマットされた文字列を取得します。値が存在しない場合はnullを返します。
+            </summary>
+            <param name="cellAddress">フォーマットされた文字列を取得するセルのアドレス。</param>
+            <returns>指定されたセルアドレスのフォーマットされた文字列。値が存在しない場合はnull。</returns>
+        </member>
+        <member name="M:MmsCore.Excel.IExcelWorksheetReader.GetStringOrNull(System.String)">
+            <summary>
+            指定されたセルアドレスの値を文字列として取得します。値が存在しない場合はnullを返します。
+            </summary>
+            <param name="cellAddress">値を取得するセルのアドレス。</param>
+            <returns>指定されたセルアドレスの値を文字列。値が存在しない場合はnull。</returns>
+        </member>
+        <member name="M:MmsCore.Excel.IExcelWorksheetReader.GetValueOrNull``1(System.String,System.Int32,System.Int32)">
+            <summary>
+            指定されたセルアドレスから値を取得します。値が存在しない場合はnullを返します。
+            </summary>
+            <typeparam name="T">値の型。</typeparam>
+            <param name="baseCellAddress">基準となるセルアドレス。</param>
+            <param name="rowOffset">行のオフセット。(0～)</param>
+            <param name="columnOffset">列のオフセット。(0～)</param>
+            <returns>指定されたセルアドレスの値。値が存在しない場合はnull。</returns>
+        </member>
+        <member name="M:MmsCore.Excel.IExcelWorksheetReader.GetFormattedStringOrNull(System.String,System.Int32,System.Int32)">
+            <summary>
+            指定されたセルアドレスからフォーマットされた文字列を取得します。値が存在しない場合はnullを返します。
+            </summary>
+            <param name="baseCellAddress">基準となるセルアドレス。</param>
+            <param name="rowOffset">行のオフセット。(0～)</param>
+            <param name="columnOffset">列のオフセット。(0～)</param>
+            <returns>指定されたセルアドレスのフォーマットされた文字列。値が存在しない場合はnull。</returns>
+        </member>
+        <member name="M:MmsCore.Excel.IExcelWorksheetReader.GetStringOrNull(System.String,System.Int32,System.Int32)">
+            <summary>
+            指定されたセルアドレスの値を文字列として取得します。値が存在しない場合はnullを返します。
+            </summary>
+            <param name="baseCellAddress">基準となるセルアドレス。</param>
+            <param name="rowOffset">行のオフセット。(0～)</param>
+            <param name="columnOffset">列のオフセット。(0～)</param>
+            <returns>指定されたセルアドレスの値を文字列。値が存在しない場合はnull。</returns>
+        </member>
+        <member name="T:MmsCore.Excel.IExcelWorksheetWriter">
+            <summary>
+            Excelシートへ書き込むためのインターフェースです。
+            </summary>
+        </member>
+        <member name="P:MmsCore.Excel.IExcelWorksheetWriter.XlWorksheet">
+            <summary>
+            <see cref="T:ClosedXML.Excel.IXLWorksheet" /> を取得します。
+            </summary>
+            <value>
+            値を表す <see cref="T:ClosedXML.Excel.IXLWorksheet" /> 型。
+            <para><see cref="T:ClosedXML.Excel.IXLWorksheet" />。</para>
+            </value>
+        </member>
+        <member name="P:MmsCore.Excel.IExcelWorksheetWriter.SheetName">
+            <summary>
+            ワークシート名を取得します。
+            </summary>
+            <value>
+            値を表す <see cref="T:System.String" /> 型。
+            <para>ワークシート名。既定値は <see langword="null" /> です。</para>
+            </value>
+        </member>
+        <member name="M:MmsCore.Excel.IExcelWorksheetWriter.ClearRanges(System.String)">
+            <summary>
+            指定されたセルをクリアします。
+            </summary>
+            <param name="ranges">セルアドレス。</param>
+        </member>
+        <member name="M:MmsCore.Excel.IExcelWorksheetWriter.SetCellBackgroundColor(System.String,ClosedXML.Excel.XLColor)">
+            <summary>
+            指定されたセルの背景色を設定します。
+            </summary>
+            <param name="cellAddress">セルアドレス。</param>
+            <param name="color">設定する背景色。</param>
+        </member>
+        <member name="M:MmsCore.Excel.IExcelWorksheetWriter.SetCellBackgroundColor(System.String,System.Int32,System.Int32,ClosedXML.Excel.XLColor)">
+            <summary>
+            指定されたセルの背景色を設定します。
+            </summary>
+            <param name="baseCellAddress">基準となるセルアドレス。</param>
+            <param name="rowOffset">行のオフセット。(0～)</param>
+            <param name="columnOffset">列のオフセット。(0～)</param>
+            <param name="color">設定する背景色。</param>
+        </member>
+        <member name="M:MmsCore.Excel.IExcelWorksheetWriter.SetCellValue(System.String,System.String)">
+            <summary>
+            指定されたセルに値を設定します。
+            </summary>
+            <param name="cellAddress">セルアドレス。</param>
+            <param name="value">設定する値。</param>
+        </member>
+        <member name="M:MmsCore.Excel.IExcelWorksheetWriter.SetCellValue``1(System.String,``0)">
+            <summary>
+            指定されたセルに値を設定します。
+            </summary>
+            <typeparam name="T">値の型。</typeparam>
+            <param name="cellAddress">セルアドレス。</param>
+            <param name="value">設定する値。</param>
+        </member>
+        <member name="M:MmsCore.Excel.IExcelWorksheetWriter.SetCellValue``1(System.String,System.Nullable{``0})">
+            <summary>
+            指定されたセルに値を設定します。
+            </summary>
+            <typeparam name="T">値の型。</typeparam>
+            <param name="cellAddress">セルアドレス。</param>
+            <param name="value">設定する値。</param>
+        </member>
+        <member name="M:MmsCore.Excel.IExcelWorksheetWriter.SetCellValue(System.String,System.Int32,System.Int32,System.String)">
+            <summary>
+            指定されたセルに値を設定します。
+            </summary>
+            <param name="baseCellAddress">基準となるセルアドレス。</param>
+            <param name="rowOffset">行のオフセット。(0～)</param>
+            <param name="columnOffset">列のオフセット。(0～)</param>
+            <param name="value">設定する値。</param>
+        </member>
+        <member name="M:MmsCore.Excel.IExcelWorksheetWriter.SetCellValue``1(System.String,System.Int32,System.Int32,``0)">
+            <summary>
+            指定されたセルに値を設定します。
+            </summary>
+            <typeparam name="T">値の型。</typeparam>
+            <param name="baseCellAddress">基準となるセルアドレス。</param>
+            <param name="rowOffset">行のオフセット。(0～)</param>
+            <param name="columnOffset">列のオフセット。(0～)</param>
+            <param name="value">設定する値。</param>
+        </member>
+        <member name="M:MmsCore.Excel.IExcelWorksheetWriter.SetCellValue``1(System.String,System.Int32,System.Int32,System.Nullable{``0})">
+            <summary>
+            指定されたセルに値を設定します。
+            </summary>
+            <typeparam name="T">値の型。</typeparam>
+            <param name="baseCellAddress">基準となるセルアドレス。</param>
+            <param name="rowOffset">行のオフセット。(0～)</param>
+            <param name="columnOffset">列のオフセット。(0～)</param>
+            <param name="value">設定する値。</param>
+        </member>
+        <member name="M:MmsCore.Excel.IExcelWorksheetWriter.SetRowsDataArray``1(System.String,System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Int32,System.Object}[])">
+            <summary>
+            行データの配列を設定します。
+            </summary>
+            <typeparam name="T">コレクションの要素の型。</typeparam>
+            <param name="destinationRangeAddress">設定先のセル。</param>
+            <param name="rowItems">コレクション。</param>
+            <param name="columnObjectSelectors">コレクションの要素から <see cref="T:System.Object" /> を取得するメソッドのデリゲート。</param>
+        </member>
+        <member name="M:MmsCore.Excel.IExcelWorksheetWriter.SetRowsDataArray(System.String,System.Collections.Generic.IReadOnlyCollection{System.Object[]})">
+            <summary>
+            行データの配列を設定します。
+            </summary>
+            <param name="destinationRangeAddress">設定先のセル。</param>
+            <param name="rowsDataArray">行データの配列。</param>
+        </member>
+        <member name="M:MmsCore.Excel.IExcelWorksheetWriter.CopyAndPasteRowsDataArray``1(System.String,System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Int32,System.Object}[])">
+            <summary>
+            指定されたコピー元のセル範囲をもとに行データの配列を設定します。
+            </summary>
+            <typeparam name="T">コレクションの要素の型。</typeparam>
+            <param name="sourceRangeAddressToCopy">コピー元のセル範囲。</param>
+            <param name="rowItems">コレクション。</param>
+            <param name="columnObjectSelectors">コレクションの要素から <see cref="T:System.Object" /> を取得するメソッドのデリゲート。</param>
+        </member>
+        <member name="M:MmsCore.Excel.IExcelWorksheetWriter.CopyAndPasteRowsDataArray(System.String,System.Collections.Generic.IReadOnlyCollection{System.Object[]})">
+            <summary>
+            指定されたコピー元のセル範囲をもとに行データの配列を設定します。
+            </summary>
+            <param name="sourceRangeAddressToCopy">コピー元のセル範囲。</param>
+            <param name="rowsDataArray">行データの配列。</param>
+        </member>
+        <member name="M:MmsCore.Excel.IExcelWorksheetWriter.CreateOrResizeTable(System.String,System.String,System.Int32)">
+            <summary>
+            指定されたセル範囲をテーブルとして生成します。セル範囲が重なる既存テーブルがあればリサイズします。
+            </summary>
+            <param name="baseRangeAddress">セル範囲。</param>
+            <param name="tableName">生成する場合のテーブル名。</param>
+            <param name="rowsCount">データ行の行数。</param>
+        </member>
+        <member name="T:MmsCore.Excel.IExcelWriter">
+            <summary>
+            Excel 出力を行うインターフェイスを表します。
+            </summary>
+        </member>
+        <member name="P:MmsCore.Excel.IExcelWriter.XlWorkbook">
+            <summary>
+            出力する Excelファイルの <see cref="T:ClosedXML.Excel.IXLWorkbook" />を取得します。
+            </summary>
+            <value>
+            値を表す <see cref="T:ClosedXML.Excel.IXLWorkbook" /> 型。
+            <para>出力する Excelファイルの <see cref="T:ClosedXML.Excel.IXLWorkbook" />。</para>
+            </value>
+        </member>
+        <member name="P:MmsCore.Excel.IExcelWriter.Item(System.String)">
+            <summary>
+            指定されたシート名に対応する <see cref="T:MmsCore.Excel.IExcelWorksheetWriter" /> を取得します。
+            </summary>
+            <param name="worksheetNameToWrite">書き込むシートの名前。</param>
+            <returns>指定された名前のシートが存在する場合はそのシートの<see cref="T:MmsCore.Excel.IExcelWorksheetWriter" />。存在しない場合は null を返します。</returns>
+        </member>
+        <member name="M:MmsCore.Excel.IExcelWriter.GetWorksheetWriterOrNull(System.String)">
+            <summary>
+            指定されたシート名に対応する <see cref="T:MmsCore.Excel.IExcelWorksheetWriter" /> を取得します。
+            </summary>
+            <param name="worksheetNameToWrite">書き込むシートの名前。</param>
+            <returns>指定された名前のシートが存在する場合はそのシートの<see cref="T:MmsCore.Excel.IExcelWorksheetWriter" />。存在しない場合は null を返します。</returns>
+        </member>
+        <member name="M:MmsCore.Excel.IExcelWriter.GetWorksheetWriterOrNull(System.Int32)">
+            <summary>
+            指定されたシート番号に対応する <see cref="T:MmsCore.Excel.IExcelWorksheetWriter" /> を取得します。
+            </summary>
+            <param name="worksheetPositionToWrite">書き込むシート番号 (1～)。</param>
+            <returns>指定されたシート番号にシートが存在する場合はそのシートの<see cref="T:MmsCore.Excel.IExcelWorksheetWriter" />。存在しない場合は null を返します。</returns>
+        </member>
+        <member name="M:MmsCore.Excel.IExcelWriter.GetWorksheetNames">
+            <summary>
+            シート名のコレクションを取得します。
+            </summary>
+            <returns>シート名のコレクション。</returns>
+        </member>
+        <member name="M:MmsCore.Excel.IExcelWriter.SaveTo(System.IO.Stream)">
+            <summary>
+            指定されたストリームへ保存します。
+            </summary>
+            <param name="stream">保存先の <see cref="T:System.IO.Stream" />。</param>
+        </member>
+        <member name="M:MmsCore.Excel.IExcelWriter.GetByteArrayToSave">
+            <summary>
+            Excel ファイルのバイト配列を取得します。
+            </summary>
+            <returns>Excel ファイルのバイト配列。</returns>
+        </member>
+        <member name="T:MmsCore.Excel.XlWorksheetExtensions">
+            <summary>
+            <see cref="T:ClosedXML.Excel.IXLWorksheet" /> インターフェイスの拡張メソッドを提供します。
+            </summary>
+        </member>
+        <member name="M:MmsCore.Excel.XlWorksheetExtensions.ResolveCellAddress(ClosedXML.Excel.IXLWorksheet,System.String,System.Int32,System.Int32)">
+            <summary>
+            セルアドレスを求めます。
+            </summary>
+            <param name="worksheet"><see cref="T:ClosedXML.Excel.IXLWorksheet" /> インスタンス。</param>
+            <param name="baseCellAddress">基準となるセルアドレス。</param>
+            <param name="rowOffset">行のオフセット。(0～)</param>
+            <param name="columnOffset">列のオフセット。(0～)</param>
+            <returns>セルアドレス。</returns>
+        </member>
+    </members>
+</doc>
